@@ -28,7 +28,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/material-theme.scss"
+              "src/material-theming.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true

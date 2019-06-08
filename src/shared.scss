@@ -1,0 +1,11 @@
+$nav-icons-width: 200px;
+
+@mixin profile-icons($color) {
+  color: $color;
+  width: $nav-icons-width;
+  justify-self: flex-end;
+  margin-right: 3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

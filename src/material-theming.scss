@@ -1,0 +1,5 @@
+@import '~@angular/material/theming';
+@import "assets/themes/custom-theme";
+
+@include mat-core();
+@include angular-material-theme($custom-theme);

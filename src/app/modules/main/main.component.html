@@ -9,15 +9,10 @@
         </div>
         <div class="profile-container">
           <div class="profile-buttons">
-            <button mat-stroked-button color="accent">zarabiaj</button>
+            <button mat-stroked-button color="primary">zarabiaj</button>
             <button mat-stroked-button color="primary">wspieraj</button>
           </div>
-          <div class="profile-icons">
-            <a><mat-icon>search</mat-icon></a>
-            <a><mat-icon>contact_support</mat-icon></a>
-            <a><mat-icon>person</mat-icon></a>
-            <a><mat-icon>menu</mat-icon></a>
-          </div>
+          <app-nav-icons class="profile-icons"></app-nav-icons>
         </div>
       </nav>
     </div>
@@ -39,7 +34,7 @@
     </div>
   </header>
   <label class="search-container">
-    <input type="text" name="searchbar" placeholder=" search">
+    <input type="text" name="searchbar" placeholder="search">
     <mat-icon>search</mat-icon>
   </label>
   <div class="recommendations-label" >
@@ -49,28 +44,36 @@
     <mat-icon>whatshot</mat-icon>
   </div>
   <div class="creators-container">
-    <ul>
-      <li>
+    <div class="creators-container-center">
+      <ul>
+        <li>
+          <a>
+            <div>
+
+            </div>
+          </a>
+        </li>
+        <li>
+          <a>
+            <div>
+
+            </div>
+          </a>
+        </li>
+        <li>
+          <a>
+            <div>
+
+            </div>
+          </a>
+        </li><li>
         <a>
           <div>
 
           </div>
         </a>
       </li>
-      <li>
-        <a>
-          <div>
-
-          </div>
-        </a>
-      </li><li>
-      <a>
-        <div>
-
-        </div>
-      </a>
-    </li>
-
-    </ul>
+      </ul>
+    </div>
   </div>
 </div>

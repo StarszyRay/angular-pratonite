@@ -1,0 +1,134 @@
+@import "../../../shared";
+@import "../../../assets/themes/custom-theme";
+
+$secondary-palette: map-get($custom-theme, accent);
+
+$primary-color: mat-color($custom-primary);
+$secondary-color: mat-color($custom-accent);
+$secondary-color-dark: mat-color($custom-accent, darker);
+
+
+header {
+  display: flex;
+  background-color: whitesmoke;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  .clear-margin {
+    width: $nav-icons-width;
+  }
+}
+
+.profile-icons {
+  @include profile-icons($secondary-color-dark);
+}
+
+body {
+  width:100%;
+  height:100%;
+  background-color: $primary-color;
+}
+
+h3 {
+  text-align: center;
+  color: whitesmoke;
+  font-weight: 400;
+}
+
+.main-container {
+  display: flex;
+  width: 75%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin: 0 auto;
+  justify-content: space-between;
+  .login-container, .register-container{
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+    button {
+      height: 3rem;
+      margin: 5px 0;
+      .button-content-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.facebook-button {
+  background-color: #3b5998;
+  color: white;
+}
+
+.button-text {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  justify-self: center;
+}
+.button-icon {
+  height: 1.3rem;
+  width: 1.3rem;
+  margin-right: 5px;
+}
+
+.form-container {
+  background-color: whitesmoke;
+  border-radius: 20px;
+  padding: 12px;
+  padding-bottom: 1rem;
+  display:flex;
+  flex-direction: column;
+  button {
+    width: 60%;
+    align-self: center;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  div{
+    margin-bottom: 1rem;
+    font-size: small;
+    max-width: 100%;
+    word-wrap: break-spaces;
+    // override material checkbox layout for text wrapping wrapping
+    /deep/ .mat-checkbox-layout {
+      white-space: normal !important;
+    }
+    color: $secondary-color-dark;
+    text-align: left;
+  }
+}
+
+.login-options {
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .memory-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-transform: uppercase;
+  }
+  .privacy-policy {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+footer {
+  height: 200px;
+  padding: 20px 0;
+  background-color: mat-color($secondary-palette, 900);
+  color: mat-color($secondary-palette, darker-contrast);
+}
+
+
