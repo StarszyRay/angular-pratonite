@@ -1,0 +1,26 @@
+@import '../../../../shared';
+
+:host {             // host targets selector: 'home'
+  display: block;
+  width: 100%;    // takes parent width
+  height: 100%;   // takes parent height
+}
+
+.title-container {
+  background-color: white;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    h2 {
+      font-weight: normal;
+      font-size: 24px;
+      margin-left: 10px;
+    }
+    mat-icon {
+      color: $primary-color;
+      font-size: 36px;
+      height: fit-content;
+      width: fit-content;
+    }
+}

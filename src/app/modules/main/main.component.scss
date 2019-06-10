@@ -1,10 +1,4 @@
 @import "../../../shared";
-@import "../../../assets/themes/custom-theme";
-
-$secondary-palette: map-get($custom-theme, accent);
-
-$primary-color: mat-color($custom-primary);
-$secondary-color: mat-color($custom-accent);
 
 .main-container {
   background-color: whitesmoke;

@@ -1,0 +1,52 @@
+@import '../../../../shared';
+@import '../../../../assets/themes/custom-theme';
+
+$secondary-palette: map-get($custom-theme, accent);
+
+$primary-color: mat-color($custom-primary);
+$secondary-color: mat-color($custom-accent);
+$secondary-color-dark: mat-color($custom-accent, darker);
+
+
+.side-menu {
+  width: 270px;
+  height: 100%;
+  display: block;
+  background-color: white;
+  border-right: 1px solid $secondary-color;
+  ul {
+    &.main-ul {
+      margin: 0;
+      padding-left: 30px;
+      padding-top: 10px;
+    }
+    margin: 0;
+    padding-left: 30px;
+    padding-top: 10px;
+    list-style-type: none;
+    li {
+      list-style-type: none;
+      margin: 3px 0;
+      font-weight: 200;
+      font-size: 16px;
+      color: $secondary-color-dark;
+    }
+    .chapter {
+      border-left: 5px solid $primary-color;
+      padding: 4px 0;
+      padding-left: 1rem;
+      margin-top: 30px;
+      color: black;
+      span {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 16px;
+
+      }
+    }
+  }
+}
+
+a {
+  cursor: pointer;
+}

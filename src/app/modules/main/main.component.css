@@ -4,7 +4,8 @@
  *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *   '
  *   ../../../assets/themes/custom-theme.scss 1:9  @import
- *   main.component.scss 2:9                       root stylesheet */
+ *   ../../../shared.scss 1:9                      @import
+ *   main.component.scss 1:9                       root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -14,5 +15,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"~@angular/material/theming\";\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   ../../../assets/themes/custom-theme.scss 1:9  @import\a   main.component.scss 2:9                       root stylesheet";
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"~@angular/material/theming\";\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   ../../../assets/themes/custom-theme.scss 1:9  @import\a   ../../../shared.scss 1:9                      @import\a   main.component.scss 1:9                       root stylesheet";
 }

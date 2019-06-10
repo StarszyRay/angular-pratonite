@@ -1,4 +1,11 @@
+@import './assets/themes/custom-theme';
+
 $nav-icons-width: 200px;
+
+$secondary-palette: map-get($custom-theme, accent);
+$primary-color: mat-color($custom-primary);
+$secondary-color: mat-color($custom-accent);
+$secondary-color-dark: mat-color($custom-accent, darker);
 
 @mixin profile-icons($color) {
   color: $color;
