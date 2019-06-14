@@ -7,7 +7,7 @@
 }
 
 .title-container {
-  background-color: white;
+  background-color: inherit;
   height: 100px;
   display: flex;
   align-items: center;
@@ -23,4 +23,49 @@
       height: fit-content;
       width: fit-content;
     }
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 10px;
+  mat-form-field {
+    flex: 1;
+    min-width: 230px;
+    margin: 0 10px;
+  }
+}
+h5{
+  font-size: 0.85rem;
+  margin-left: 20px;
+}
+
+.form-button {
+  display:flex;
+  width: 100%;
+  button {
+    justify-self: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 600;
+    min-width: 200px;
+    width: 300px;
+  }
+}
+
+.change-avatar-container {
+  background-color: lighten($secondary-color, 20%);
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  .avatar-display {
+    align-self: center;
+    width: 240px;
+    height: 240px;
+    background-image: url('../../../../assets/images/default-avatar.png');
+    background-size: cover;
+  }
 }

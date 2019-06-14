@@ -1,4 +1,4 @@
-import {MatButtonModule, MatCheckboxModule, MatIconModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatIconModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -11,7 +11,8 @@ import {NgModule} from '@angular/core';
     BrowserAnimationsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
@@ -19,7 +20,8 @@ import {NgModule} from '@angular/core';
     BrowserAnimationsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
 })
 export class MaterialModule { }

@@ -7,7 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MyProfileDataComponent implements OnInit {
 
+  imie: string;
   constructor() {
+    this.imie = 'JakiesImie';
   }
 
   ngOnInit() {
