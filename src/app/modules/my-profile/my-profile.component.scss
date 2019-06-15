@@ -1,7 +1,7 @@
 @import '../../../shared';
 
 .name-bar {
-  background-color: $primary-color;
+  @include main-background();
   height: 140px;
   width: 100%;
   display: flex;

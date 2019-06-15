@@ -1,0 +1,147 @@
+@import '../../../../shared';
+
+:host {             // host targets selector: 'home'
+  display: block;
+  width: 100%;    // takes parent width
+  height: 100%;   // takes parent height
+}
+
+.title-container {
+  background-color: inherit;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    font-weight: normal;
+    font-size: 24px;
+    margin-left: 10px;
+  }
+  mat-icon {
+    color: $primary-color;
+    font-size: 36px;
+    height: fit-content;
+    width: fit-content;
+  }
+}
+
+.steps-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .step {
+    margin: 15px;
+    padding:10px;
+    width: 300px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    .price {
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid $secondary-color;
+      margin: 5px 0;
+      .price-number {
+        font-size: 3em;
+      }
+    }
+    .info {
+      margin: 5px 0;
+      color: $secondary-color-dark;
+      font-size: 0.8em;
+      text-transform: uppercase;
+    }
+    .description {
+      width: 100%;
+      height: available;
+      word-wrap: break-spaces;
+      overflow-y: hidden;
+      margin: 5px 0;
+      color: black;
+      font-size: 0.8em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.step-form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: lighten($secondary-color, 10%);
+}
+
+.add-form-button {
+  margin: 20px 0;
+  display:flex;
+  width: 100%;
+  button {
+    font-size: 18px;
+    justify-self: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 600;
+    min-width: 200px;
+    width: 300px;
+    mat-icon {
+      margin-top:-3px;
+    }
+  }
+}
+
+.attachment-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: $secondary-color-dark;
+}
+
+.form-field {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+  .file-input {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex: 1;
+    button {
+      height: fit-content;
+      margin: auto 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $secondary-color-dark;
+    }
+  }
+  .separator {
+    margin: auto 0;
+    text-transform: uppercase;
+    text-align: center;
+    flex: 1;
+    color: $secondary-color-dark;
+  }
+
+  .youtube-link {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.form-button {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  button {
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 200px;
+  }
+}

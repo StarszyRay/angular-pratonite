@@ -16,3 +16,11 @@ $secondary-color-dark: mat-color($custom-accent, darker);
   justify-content: space-between;
   align-items: center;
 }
+
+@mixin main-background() {
+  background: {
+    image: url("/assets/images/overlay2_2.png");
+    position: left;
+    repeat: no-repeat;
+  }
+}

@@ -1,0 +1,10 @@
+@import "../../../../shared";
+
+footer {
+  height: 200px;
+  padding: 20px 0;
+  background-color: mat-color($secondary-palette, 900);
+  color: mat-color($secondary-palette, darker-contrast);
+}
+
+

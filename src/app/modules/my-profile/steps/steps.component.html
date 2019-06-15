@@ -1,0 +1,105 @@
+<section class="forms-container">
+  <div class="title-container">
+    <mat-icon class="material-icons.md-36">person</mat-icon><h2>Twoje progi:</h2>
+  </div>
+  <div class="steps-container">
+    <div class="step">
+      <div class="price">
+        <span class="price-number">x</span> zł / miesiąc
+      </div>
+      <div class="info">
+        patroni: 0
+      </div>
+      <div class="description">
+        <p>
+          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="price">
+        <span class="price-number">x</span> zł / miesiąc
+      </div>
+      <div class="info">
+        patroni: 0
+      </div>
+      <div class="description">
+        <p>
+          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="price">
+        <span class="price-number">x</span> zł / miesiąc
+      </div>
+      <div class="info">
+        patroni: 0
+      </div>
+      <div class="description">
+        <p>
+          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+        </p>
+      </div>
+    </div><div class="step">
+    <div class="price">
+      <span class="price-number">x</span> zł / miesiąc
+    </div>
+    <div class="info">
+      patroni: 0
+    </div>
+    <div class="description">
+      <p>
+        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+      </p>
+    </div>
+  </div>
+    <div class="step">
+      <div class="price">
+        <span class="price-number">x</span> zł / miesiąc
+      </div>
+      <div class="info">
+        patroni: 0
+      </div>
+      <div class="description">
+        <p>
+          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+        </p>
+      </div>
+    </div>
+  </div>
+  <form class="step-form">
+    <mat-form-field hideRequiredMarker="always">
+      <input matInput type="number" placeholder="Kwota progu / miesiąc" required>
+      <span matSuffix>PLN</span>
+    </mat-form-field>
+    <mat-form-field hideRequiredMarker="always">
+      <textarea matInput rows="2" placeholder="Opis" required></textarea>
+    </mat-form-field>
+    <p class="attachment-title">Udostępnij wspierającym:</p>
+    <div class="form-field">
+      <div class="file-input">
+        <button mat-stroked-button color="accent" onclick="document.getElementById('fileToUpload').click()">
+          plik
+        </button>
+        <input id="fileToUpload" type="file" style="display:none;">
+      </div>
+      <div class="separator">
+        lub
+      </div>
+      <div class="youtube-link">
+          <mat-form-field>
+            <input matInput placeholder="Wideo YouTube">
+          </mat-form-field>
+      </div>
+    </div>
+    <div class="form-button">
+      <button mat-stroked-button color="primary">Zapisz</button>
+    </div>
+  </form>
+  <div class="add-form-button">
+    <button mat-raised-button color="primary">
+        <mat-icon>add</mat-icon> Dodaj nowy próg
+    </button>
+  </div>
+</section>

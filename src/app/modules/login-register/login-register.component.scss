@@ -3,7 +3,7 @@
 body {
   width:100%;
   height:100%;
-  background-color: $primary-color;
+  @include main-background();
 }
 
 h3 {
@@ -98,13 +98,3 @@ h3 {
     text-align: center;
   }
 }
-
-
-footer {
-  height: 200px;
-  padding: 20px 0;
-  background-color: mat-color($secondary-palette, 900);
-  color: mat-color($secondary-palette, darker-contrast);
-}
-
-
