@@ -1,10 +1,10 @@
+// modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-// modules
 import { AppRoutingModule } from './app-routing.module';
-import {MaterialModule} from './material';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MaterialModule } from './material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // components
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import {MyProfileDataComponent} from './modules/my-profile/data/data.component';
 import {MyProfileStepsComponent} from './modules/my-profile/steps/steps.component';
 import { FooterComponent } from './modules/shared/footer/footer.component';
 import {CreatorComponent} from './modules/creator/creator.component';
+import {CreatorCardComponent} from './modules/main/creator-card/creator-card.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {CreatorComponent} from './modules/creator/creator.component';
     MyProfileDataComponent,
     MyProfileStepsComponent,
     FooterComponent,
-    CreatorComponent
+    CreatorComponent,
+    CreatorCardComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import {CreatorComponent} from './modules/creator/creator.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

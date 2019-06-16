@@ -164,6 +164,12 @@
         height: 380px;
         background-color: $primary-color;
         margin: 1%;
+        a {
+          display: block;
+          height: inherit;
+          width: inherit;
+          position: relative;
+        }
       }
     }
   }
