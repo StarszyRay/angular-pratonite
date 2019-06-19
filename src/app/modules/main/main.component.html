@@ -1,36 +1,56 @@
 <div class="main-container">
   <header class="slider-bar">
-    <div class="top-bar">
-      <nav class="menu-container">
-        <div class="brand-button" >
-          <a href="/">
-            <img src="../../../assets/images/logo_and_text.png" alt="Go to main page">
-          </a>
-        </div>
-        <div class="profile-container">
-          <div class="profile-buttons">
-            <button mat-stroked-button color="primary">zarabiaj</button>
-            <button mat-stroked-button color="primary">wspieraj</button>
+    <div class="slider-contents">
+      <div class="top-bar">
+        <nav class="menu-container">
+          <div class="brand-button" >
+            <a href="/">
+              <img src="../../../assets/images/logo_and_text.png" alt="Go to main page">
+            </a>
           </div>
-          <app-nav-icons class="profile-icons"></app-nav-icons>
-        </div>
-      </nav>
+          <div class="profile-container">
+            <div class="profile-buttons">
+              <button mat-stroked-button color="primary">zarabiaj</button>
+              <button mat-stroked-button color="primary">wspieraj</button>
+            </div>
+            <app-nav-icons class="profile-icons"></app-nav-icons>
+          </div>
+        </nav>
+      </div>
+      <div class="mid-bar" [@fadeIn]="currentIndex">
+        <h1>
+          {{slides[currentIndex].description}}
+        </h1>
+        <p>Indeks: {{currentIndex}}. yashgasykgdjghjf vjhhgfhj fhgjyashgas ykgdjghjfvjh hgfhjf hfhhjfjy</p>
+      </div>
+      <div class="bottom-bar">
+        <button mat-raised-button color="primary">text</button>
+        <ul class="navigation">
+          <li *ngFor="let slide of slides; let i = index;">
+            <a class="dot"
+              (click)="carousel.selectSlide(i)"
+              [class.active]="i === carousel.activeSlide"
+              ></a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="mid-bar">
-      <h1>
-        Jakiś tekst
-      </h1>
-      <p>jakiś podekst. yashgasykgdjghjf vjhhgfhj fhgjyashgas ykgdjghjfvjh hgfhjf hfhhjfjy</p>
-    </div>
-    <div class="bottom-bar">
-      <button mat-raised-button color="primary">text</button>
-      <ul class="navigation">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+    <div class="slider-background">
+      <mdb-carousel #carousel
+        class="carousel"
+        [isControls]="false"
+        [noPause]="true"
+        [animation]="'slide'"
+        [interval]="5000"
+        (activeSlideChange)="onActiveSlideChange($event)"
+        >
+        <mdb-carousel-item *ngFor="let slide of slides; let i = index">
+          <div class="view w-100">
+            <img class="d-block w-100" [src]="slide.image" [alt]="slide.description">
+            <div class="mask rgba-black-slight"></div>
+          </div>
+        </mdb-carousel-item>
+      </mdb-carousel>
     </div>
   </header>
   <label class="search-container">
@@ -53,22 +73,16 @@
         </li>
         <li>
           <a>
-            <div>
-
-            </div>
+            <app-creator-card></app-creator-card>
           </a>
         </li>
         <li>
           <a>
-            <div>
-
-            </div>
+            <app-creator-card></app-creator-card>
           </a>
         </li><li>
         <a>
-          <div>
-
-          </div>
+          <app-creator-card></app-creator-card>
         </a>
       </li>
       </ul>

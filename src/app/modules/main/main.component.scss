@@ -1,5 +1,7 @@
 @import "../../../shared";
 
+$slider-height: 500px;
+
 .main-container {
   background-color: whitesmoke;
   width: 100%;
@@ -7,18 +9,37 @@
 }
 
 .slider-bar {
+  position: relative;
   color: whitesmoke;
-  height: 400px;
-  min-height: 256px;
+  height: $slider-height;
   background-color: $secondary-color;
+}
+
+.slider-contents {
+  position: relative;
+  top: 0;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 3px 5% 8% 15%;
+  margin: 3px 5% 5% 15%;
   text-transform: uppercase;
+  z-index: 2;
 }
+
+.slider-background {
+  width: 100%;
+  height: $slider-height;
+  background-color: green;
+  position: absolute;
+  top:0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+
 .top-bar {
-  flex:2;
+  height: 30%;
   display: flex;
   justify-content: center;
   .menu-container {
@@ -65,7 +86,7 @@
 }
 
 .mid-bar {
-  flex-grow: 2;
+  flex: 1;
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
@@ -84,7 +105,7 @@
 }
 
 .bottom-bar {
-  flex:1;
+  height: 30%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -100,9 +121,22 @@
   ul {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-between;
-    width: 50px;
+    width: fit-content;
+    list-style-type: none;
+    .dot {
+      background-color: white;
+      border-radius: 50%;
+      display: block;
+      width: 8px;
+      height: 8px;
+      border: 2px solid white;
+      margin: 0 8px;
+      opacity: 0.8;
+      &.active {
+        background: none;
+      }
+    }
   }
 }
 

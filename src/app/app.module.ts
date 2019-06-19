@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
 
 // components
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import {MyProfileStepsComponent} from './modules/my-profile/steps/steps.componen
 import { FooterComponent } from './modules/shared/footer/footer.component';
 import {CreatorComponent} from './modules/creator/creator.component';
 import {CreatorCardComponent} from './modules/main/creator-card/creator-card.component';
+import { TestsComponent } from './modules/tests/tests.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import {CreatorCardComponent} from './modules/main/creator-card/creator-card.com
     MyProfileStepsComponent,
     FooterComponent,
     CreatorComponent,
-    CreatorCardComponent
+    CreatorCardComponent,
+    TestsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import {CreatorCardComponent} from './modules/main/creator-card/creator-card.com
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CarouselModule.forRoot(),
+    WavesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

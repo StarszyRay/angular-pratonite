@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'dane', component: MyProfileDataComponent },
       { path: 'steps', component: MyProfileStepsComponent }
       ]},
-  { path: 'creator', component: CreatorComponent }
+  { path: 'creator', component: CreatorComponent },
 ];
 
 @NgModule({

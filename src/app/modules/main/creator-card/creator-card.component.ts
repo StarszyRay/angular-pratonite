@@ -15,7 +15,7 @@ import {animate, animateChild, group, query, stagger, state, style, transition, 
         opacity: 1
       })),
       transition('inactive <=> active', [
-          animate('0.4s')
+          animate('0.2s')
       ])
     ]),
     trigger('infoSlide', [
@@ -23,7 +23,7 @@ import {animate, animateChild, group, query, stagger, state, style, transition, 
         height: '75%'
       })),
       transition( '* <=> *', [
-          animate( '0.4s' )
+          animate( '0.2s' )
       ] )
     ])
   ]
