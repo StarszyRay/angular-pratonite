@@ -6,6 +6,12 @@ import { MaterialModule } from './material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { firebaseEnv } from '../environments/fbenvironment';
+import {ServicesModule} from './services/services.module';
+import {HttpClientModule} from '@angular/common/http';
 
 // components
 import { AppComponent } from './app.component';
@@ -40,6 +46,7 @@ import { TestsComponent } from './modules/tests/tests.component';
     TestsComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseEnv.firebase),
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
@@ -48,8 +55,13 @@ import { TestsComponent } from './modules/tests/tests.component';
     BrowserAnimationsModule,
     CarouselModule.forRoot(),
     WavesModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    HttpClientModule,
+    ServicesModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

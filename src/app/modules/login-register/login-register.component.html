@@ -6,13 +6,13 @@
       <button mat-raised-button  class="facebook-button">
       <span class="button-content-container">
         <img class="button-icon" src="../../../assets/images/icons/facebook-icon-white.png" alt="zaloguj się przez facebooka" matPrefix/>
-      <span class="button-text">
-        Zaloguj się przez facebooka
-      </span>
+        <span class="button-text">
+          Zaloguj się przez facebooka
+        </span>
       </span>
       </button>
       <button mat-raised-button>
-      <span class="button-content-container">
+      <span class="button-content-container" (click)="tryGoogleLogin()">
         <img class="button-icon" src="../../../assets/images/icons/google-icon-color.png" alt="zaloguj się przez google" matPrefix/>
         <span class="button-text">
         Zaloguj się przez google
@@ -20,17 +20,18 @@
       </span>
       </button>
       <h3>lub przy użyciu poczty</h3>
-      <ngForm class="form-container">
+      <form class="form-container" [formGroup]="loginFormGroup" (ngSubmit)="loginSubmit()">
         <mat-form-field>
-          <input matInput placeholder="Adres e-mail" [formControl]="loginEmail" required>
-          <mat-error *ngIf="loginEmail.invalid">{{getLoginErrorMessage()}}</mat-error>
+          <input matInput placeholder="Adres e-mail" formControlName="email">
+          <mat-error *ngIf="loginEmail.invalid">{{getLoginEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Hasło" type="password">
+          <input matInput placeholder="Hasło" type="password" formControlName="password">
+          <mat-error *ngIf="loginPassword.invalid && loginPassword.touched">Niepoprawne hasło</mat-error>
         </mat-form-field>
         <div class="login-options">
          <div class="memory-container">
-           <mat-checkbox color="primary">zapamiętaj mnie</mat-checkbox>
+           <mat-checkbox color="primary" formControlName="remember">zapamiętaj mnie</mat-checkbox>
            <a>nie pamiętam hasła</a>
          </div>
           <span class="privacy-policy">
@@ -41,7 +42,7 @@
           Logując się do serwisu oświadczam, że mam więcej niż 18 lat lub przekazałem wypełniony i podpisany formularz "Zgodna na założenie konta przez osobę niepełnoletnią" dostępny w regulaminie Pratonite.pl
         </div>
         <button mat-stroked-button color="primary">Zaloguj</button>
-      </ngForm>
+      </form>
     </div>
 
     <div class="register-container">
@@ -54,7 +55,7 @@
         </span>
       </span>
       </button>
-      <button mat-raised-button>
+      <button mat-raised-button (click)="tryGoogleLogin()">
       <span class="button-content-container">
         <img class="button-icon" src="../../../assets/images/icons/google-icon-color.png" alt="zaloguj się przez google" matPrefix/>
         <span class="button-text">
@@ -63,37 +64,41 @@
       </span>
       </button>
       <h3>lub przy użyciu poczty</h3>
-      <div class="form-container">
+      <form class="form-container" [formGroup]="registerFormGroup" (ngSubmit)="registerSubmit()">
         <mat-form-field>
-          <input matInput placeholder="Imię" required>
+          <input matInput placeholder="Imię" formControlName="name">
+          <mat-error *ngIf="name.invalid && name.touched">Uzupełnij imię</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Nazwisko" required>
+          <input matInput placeholder="Nazwisko" formControlName="surname">
+          <mat-error *ngIf="surname.invalid && surname.touched">Uzupełnij nazwisko</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Adres e-mail" [formControl]="registerEmail" required>
-          <mat-error *ngIf="registerEmail.invalid">{{getRegisterErrorMessage()}}</mat-error>
+          <input matInput placeholder="Adres e-mail" formControlName="email">
+          <mat-error *ngIf="registerEmail.invalid">{{getRegisterEmailErrorMessage()}}</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Hasło" type="password">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Powtórz hasło" type="password">
+          <input matInput placeholder="Hasło" type="password" formControlName="password">
+          <mat-error *ngIf="registerPassword.invalid && registerPassword.touched">Niepoprawne hasło</mat-error>
         </mat-form-field>
         <div><p>
           Hasło musi składać się z co najmniej 8 znaków i zawierać małą, dużą literę, liczbę lub znak specjalny. Pamiętaj, aby nie udostępniać go nikomu.
         </p></div>
-        <button mat-stroked-button color="primary">Załóż konto</button>
-        <div> <mat-checkbox color="primary">
+        <button mat-stroked-button color="primary" type="submit">Załóż konto</button>
+        <div *ngIf="isCheckboxError()" [ngClass] = "'error'">
+          Zaprzedaj nam swoją duszę poniższymi checkboxami!
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="regulations">
           Zapoznałem się i akceptuję <a><b>Regulamin</b></a> serwisu oraz <a><b>Politykę Prywatności</b></a>.
         </mat-checkbox></div>
-        <div> <mat-checkbox color="primary">
+        <div> <mat-checkbox color="primary" formControlName="personalData">
           Wyrażam zgodę na przetwarzanie moich danych osobowych podanych w formularzu rejestracyjnym w celu prawidłowego świadczenia usług serwisu Pratonite.
         </mat-checkbox></div>
-        <div> <mat-checkbox color="primary">
+        <div> <mat-checkbox color="primary" formControlName="information">
           Wyrażam zgodę na otrzymywanie drogą elektroniczną informacji handlowych - newslettera. Opcja ta może zostać zmieniona w ustawieniach konta.
         </mat-checkbox></div>
-      </div>
+      </form>
     </div>
   </div>
 </body>

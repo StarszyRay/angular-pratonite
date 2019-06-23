@@ -49,4 +49,7 @@ $secondary-color-dark: mat-color($custom-accent, darker);
 
 a {
   cursor: pointer;
+  &:active, &:link, &:visited {
+    color: inherit;
+  }
 }

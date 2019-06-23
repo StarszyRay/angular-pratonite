@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {IUser} from '../../../interfaces/user';
+import {ProfileService} from '../../../services/profile.service';
 
 
 @Component({
@@ -8,9 +10,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MyProfileStepsComponent implements OnInit {
 
-  constructor() {
+  profileDetails: IUser;
+  constructor(private profileService: ProfileService) {
   }
 
   ngOnInit() {
+    this.profileService.details().subscribe( details => {
+      this.profileDetails = details;
+    });
   }
 }

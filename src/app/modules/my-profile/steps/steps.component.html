@@ -1,4 +1,4 @@
-<section class="forms-container">
+<section class="forms-container" *ngIf="profileDetails != null; else elseBlock">
   <div class="title-container">
     <mat-icon class="material-icons.md-36">person</mat-icon><h2>Twoje progi:</h2>
   </div>
@@ -103,3 +103,9 @@
     </button>
   </div>
 </section>
+<ng-template #elseBlock>
+  <mat-progress-spinner
+    color="accent"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>

@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginRegisterComponent },
   { path: 'moj_profil', component: MyProfileComponent, children: [
-      { path: '', component: MyProfileDataComponent },
+      { path: '', redirectTo: 'dane', pathMatch: 'full' },
       { path: 'dane', component: MyProfileDataComponent },
       { path: 'steps', component: MyProfileStepsComponent }
       ]},

@@ -1,84 +1,35 @@
-<section class="forms-container">
+<section *ngIf="profileDetails != null; else elseBlock" class="forms-container">
   <div class="title-container">
       <mat-icon class="material-icons.md-36">person</mat-icon><h2>Twoje dane:</h2>
   </div>
   <form>
     <div class="form-row">
-      <mat-form-field appearance="outline" floatLabel="always">
+      <mat-form-field appearance="outline" [floatLabel]="isFloatLabel">
         <mat-label>Imie</mat-label>
-        <input matInput #imieField maxLenght="50" placeholder="JakiesImie" [defaultValue]="imie">
-        <mat-hint align="end">{{imieField.value?.length || 0}}/50</mat-hint>
+        <input matInput maxLenght="50" name="name" [(ngModel)]="profileDetails.name" >
+        <mat-hint align="end">{{profileDetails.name.length || 0}}/50</mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [floatLabel]="isFloatLabel">
         <mat-label>Nazwisko</mat-label>
-        <input matInput #nazwiskoField maxlength="100" placeholder="JakiesNazwisko">
-        <mat-hint align="end">{{nazwiskoField.value?.length || 0}}/100</mat-hint>
+        <input matInput maxlength="100" name="surname" [(ngModel)]="profileDetails.surname">
+        <mat-hint align="end">{{profileDetails.surname.length || 0}}/100</mat-hint>
       </mat-form-field>
     </div>
     <div class="form-row">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [floatLabel]="isFloatLabel">
         <mat-label>Adres email</mat-label>
-        <input matInput placeholder="placeholder@email.com">
+        <input matInput name="email" [(ngModel)]="profileDetails.email">
         <mat-hint>Autorzy kontaktują się z Patronami mailowo - upewnij się, że Twój adres e-mail jest aktualny!</mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [floatLabel]="isFloatLabel">
         <mat-label>Widoczna nazwa użytkownika</mat-label>
-        <input matInput placeholder="JakaśnNazwa">
+        <input matInput name="visibleName" [(ngModel)]="profileDetails.visibleName">
       </mat-form-field>
     </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Miasto</mat-label>
-        <input matInput placeholder="JakiesMiasto">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Data urodzenia</mat-label>
-        <input matInput placeholder="YYYY-MM-DD">
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Telefon</mat-label>
-        <input matInput placeholder="JakisTelefon">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Krótki link profilu</mat-label>
-        <input matInput placeholder="">
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Adres do korespondencji</mat-label>
-        <input matInput placeholder="">
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-select>
-          <mat-option>-- None --</mat-option>
-          <mat-option value="option">Option</mat-option>
-        </mat-select>
-        <mat-label>Narodowosc</mat-label>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-select>
-          <mat-option>-- None --</mat-option>
-          <mat-option value="option">Polska</mat-option>
-        </mat-select>
-        <mat-label>Kraj zamieszkania</mat-label>
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field appearance="outline">
-        <mat-label>Krótki opis profilu</mat-label>
-        <textarea matInput #opisField maxlength="300" placeholder="Krótki opis profilu"></textarea>
-        <mat-hint align="end">{{opisField.value?.length || 0}}/300</mat-hint>
-      </mat-form-field>
-    </div>
-    <h5>Twoje unikalne ID to: 000000</h5>
+    <h5>Twoje unikalne ID to: <b>{{profileDetails.uid}}</b></h5>
   </form>
   <div class="form-button">
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="saveProfile()">
       Zapisz zmiany
     </button>
   </div>
@@ -86,8 +37,25 @@
     <div class="title-container">
       <mat-icon class="material-icons.md-36">person</mat-icon><h2>Twój avatar:</h2>
     </div>
+    <input hidden id="avatar" (change)="avatarChangeEvent($event)" type="file" accept="image/*" #avatarInput>
     <div class="avatar-display">
+      <img *ngIf="profileDetails.avatar.length > 0" src="{{profileDetails.avatar}}" alt="" [@zoomFadeBlur]="avatarAnimationState">
+      <a (click)="avatarInput.click()"
+         class="hover-option"
+         (mouseenter)="avatarHoverEnter()"
+         (mouseleave)="avatarHoverLeave()"
+         [@zoomFade]="avatarAnimationState"
+      >
+        <h2>ZMIEŃ</h2>
+      </a>
     </div>
   </div>
-
 </section>
+
+<ng-template #elseBlock>
+    <mat-progress-spinner
+      class="spinner"
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+</ng-template>

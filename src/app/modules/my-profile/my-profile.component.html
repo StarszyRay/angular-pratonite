@@ -1,9 +1,15 @@
 <app-simple-header></app-simple-header>
 <div class="name-bar">
-  <div class="center">
-    <h2>Imię Nazwisko</h2>
-    <small>Jakaś rola</small>
+  <div class="center" *ngIf="profileDetails != null; else elseBlock">
+    <h2>{{profileDetails.visibleName}}</h2>
+    <small>{{profileDetails.role}}</small>
   </div>
+  <ng-template #elseBlock>
+    <mat-progress-spinner
+      color="accent"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </ng-template>
 </div>
 <div class="main-container">
   <app-side-menu></app-side-menu>

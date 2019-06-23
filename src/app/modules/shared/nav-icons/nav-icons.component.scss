@@ -1,7 +1,5 @@
-a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-size: 24px;
+
+*:focus {
+  outline: none !important;
+  border: 0 !important;
 }
