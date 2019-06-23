@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IUser} from '../../../interfaces/user';
 import {ProfileService} from '../../../services/profile.service';
+import {FormBuilder} from '@angular/forms';
+import {FileService} from '../../../services/file.service';
 
 
 @Component({

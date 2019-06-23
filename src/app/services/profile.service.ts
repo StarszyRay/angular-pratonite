@@ -33,7 +33,6 @@ export class ProfileService {
 
   getProfileDetails() {
     const user = this.httpClient.get(`${this.usersUrl}/byUid?uid=${this.profileUid.value}`);
-    console.log(`${this.usersUrl}/byUid?uid=${this.profileUid.value}`);
     user.subscribe(
       (u) => {
         this.profileDetails.next(u as IUser);
@@ -77,12 +76,7 @@ export class ProfileService {
   }
 
   tryUpdateProfile(data: IUser): Promise<any> {
-    console.log(`${this.usersUrl}?id=${data._id}`);
     return this.httpClient.put(`${this.usersUrl}?id=${data._id}`, data).toPromise();
-  }
-
-  uploadAvatar(avatar, uid) {
-    return this.httpClient.post(`${this.usersUrl}/changeAvatar?uid=${uid}`, avatar).toPromise();
   }
 
 }

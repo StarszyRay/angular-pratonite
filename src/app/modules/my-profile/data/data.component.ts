@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {IUser} from '../../../interfaces/user';
 import {ProfileService} from '../../../services/profile.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {ZoomFadeAnimation} from '../../../animations/zoom-fade.animation';
+import {FileService} from '../../../services/file.service';
 
 @Component({
   selector: 'app-my-profile-data',
@@ -20,7 +21,8 @@ export class MyProfileDataComponent implements OnInit {
   avatarForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private profileService: ProfileService) {
+              private profileService: ProfileService,
+              private fileService: FileService) {
     this.avatarForm = this.formBuilder.group({
       avatar: ['']
     });
@@ -45,9 +47,10 @@ export class MyProfileDataComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.avatarForm.get('avatar').value);
       console.log(formData);
-      this.profileService.uploadAvatar(formData, this.profileDetails.uid)
+      this.fileService.uploadAvatar(formData)
         .then( response => {
-          console.log(response);
+          const jsonResponse = JSON.parse(JSON.stringify(response));
+          this.profileDetails.avatar = jsonResponse.fileUrl;
         }, error => {
           console.log(error);
       });
