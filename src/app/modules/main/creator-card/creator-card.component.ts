@@ -1,5 +1,6 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {animate, animateChild, group, query, stagger, state, style, transition, trigger} from '@angular/animations';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {IUser} from '../../../interfaces/user.interface';
 
 
 @Component({
@@ -31,6 +32,7 @@ import {animate, animateChild, group, query, stagger, state, style, transition, 
 export class CreatorCardComponent implements OnInit {
 
   animationState = 'inactive';
+  @Input() creator: IUser;
 
   constructor() {
 
@@ -39,12 +41,12 @@ export class CreatorCardComponent implements OnInit {
   @HostListener('mouseenter')
   noMouseEnter() {
     this.animationState = 'active';
-    console.log('entered ', this.animationState);
+    // console.log('entered ', this.animationState);
   }
   @HostListener('mouseleave')
   noMouseLeave() {
     this.animationState = 'inactive';
-    console.log('left', this.animationState);
+    // console.log('left', this.animationState);
   }
 
   ngOnInit() {

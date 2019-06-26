@@ -12,4 +12,8 @@ export class FileService {
   uploadAvatar(avatar) {
     return this.httpClient.post(`${this.fileUrl}/avatar`, avatar).toPromise();
   }
+
+  uploadPicture(picture) {
+    return this.httpClient.post(`${this.fileUrl}/picture`, picture).toPromise();
+  }
 }

@@ -1,0 +1,56 @@
+@import '../../../../shared';
+
+:host {             // host targets selector: 'home'
+  display: block;
+  width: 100%;    // takes parent width
+  height: 100%;   // takes parent height
+}
+
+.title-container {
+  background-color: inherit;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    font-weight: normal;
+    font-size: 24px;
+    margin-left: 10px;
+  }
+  mat-icon {
+    color: $primary-color;
+    font-size: 36px;
+    height: fit-content;
+    width: fit-content;
+  }
+}
+
+.row {
+  width: 100%;
+  height: fit-content;
+  margin: 10px 0;
+  padding: 0 20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  mat-form-field {
+    flex: 1;
+    margin: 5px;
+  }
+}
+
+.save-button {
+  width: 20%;
+}
+
+.supported-warn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  button {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}

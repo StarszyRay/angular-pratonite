@@ -19,9 +19,9 @@
       </div>
       <div class="mid-bar" [@fadeIn]="currentIndex">
         <h1>
-          {{slides[currentIndex].description}}
+          Slide {{currentIndex}}
         </h1>
-        <p>Indeks: {{currentIndex}}. yashgasykgdjghjf vjhhgfhj fhgjyashgas ykgdjghjfvjh hgfhjf hfhhjfjy</p>
+        <p>{{slides[currentIndex].description}}</p>
       </div>
       <div class="bottom-bar">
         <button mat-raised-button color="primary">text</button>
@@ -63,29 +63,23 @@
     </h3>
     <mat-icon>whatshot</mat-icon>
   </div>
-  <div class="creators-container">
+  <div class="creators-container" *ngIf="recommendedCreators != null; else loadingBlock">
     <div class="creators-container-center">
       <ul>
-        <li>
-          <a>
-            <app-creator-card></app-creator-card>
+        <li *ngFor="let c of recommendedCreators">
+          <a routerLink="/tworca/{{c.uid}}">
+            <app-creator-card [creator]="c"></app-creator-card>
           </a>
         </li>
-        <li>
-          <a>
-            <app-creator-card></app-creator-card>
-          </a>
-        </li>
-        <li>
-          <a>
-            <app-creator-card></app-creator-card>
-          </a>
-        </li><li>
-        <a>
-          <app-creator-card></app-creator-card>
-        </a>
-      </li>
       </ul>
     </div>
   </div>
 </div>
+
+<ng-template #loadingBlock>
+  <mat-progress-spinner
+    class="spinner"
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>

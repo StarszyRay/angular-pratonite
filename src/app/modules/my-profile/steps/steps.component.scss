@@ -105,9 +105,9 @@
   display: flex;
   justify-content: space-evenly;
   align-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.45);
   .file-input {
     display: flex;
+    flex-direction: column;
     align-content: center;
     justify-content: center;
     flex: 1;
@@ -130,7 +130,17 @@
   .youtube-link {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+  }
+
+  .patron-message {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    mat-form-field {
+      width: 90%;
+    }
   }
 }
 
@@ -144,4 +154,38 @@
     font-weight: bold;
     width: 200px;
   }
+}
+
+.miniature-container {
+  position: relative;
+  width: fit-content;
+  height: 240px;
+  .picture-miniature {
+    max-width: 340px;
+    max-height: 240px;
+    position: relative;
+  }
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+
+.youtube-container {
+  width: fit-content;
+  position:relative;
+  .cancel-button {
+    position:absolute;
+    top:0;
+    right: 0;
+  }
+}
+
+.link-input {
+    width: 100%;
+    button {
+     width: 100%;
+    }
 }

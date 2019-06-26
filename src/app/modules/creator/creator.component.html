@@ -1,98 +1,84 @@
 <app-simple-header></app-simple-header>
 
 <div class="info-container">
-  <div class="avatar-box">
-    <img src="../../../assets/images/default-avatar.png"/>
-  </div>
-  <div class="center-box">
-    <h2>Nazwa twórcy</h2>
-    <h3>Tagi, Tagi, Tagi</h3>
-    <p>rola</p>
-  </div>
-  <div class="right-box">
-    <div class="stat-box">
-      XX
-      <p>patronów</p>
+  <div class="details-container" *ngIf="creatorDetails != null; else loadingDetails">
+    <div class="avatar-box">
+      <img src="{{creatorDetails.avatar}}"/>
     </div>
-    <div class="stat-box">
-      XX
-      <p>patronów</p>
+    <div class="center-box">
+      <h2>{{creatorDetails.visibleName}}</h2>
+      <h3>{{creatorDetails.creatorFields.tags}}</h3>
+      <p>{{creatorDetails.creatorFields.specialization}}</p>
     </div>
-    <div class="stat-box">
-      XX
-      <p>patronów</p>
+    <div class="right-box">
+      <div class="stat-box">
+        {{patronsNum}}
+        <p>patronów</p>
+      </div>
+      <div class="stat-box">
+        {{monthlyIncome}} ZŁ
+        <p>miesięcznie</p>
+      </div>
     </div>
   </div>
+
 </div>
 <div class="main-container">
   <div class="title-container">
     <mat-icon class="material-icons.md-36">view_list</mat-icon><h2>Progi:</h2>
   </div>
-  <div class="steps-container">
-    <div class="step">
+  <div class="steps-container" *ngIf="creatorSteps != undefined; else loadingDetails">
+    <div class="step" *ngFor="let step of sortedSteps()">
       <div class="step-header">
         <div class="title">
           <h4>
-            Poziom X
+            {{step.price}} zł / miesiąc
           </h4>
-          <h5>
-            X zł / miesiąc
-          </h5>
         </div>
-        <div class="step-description">
+        <div class="description-container">
           <h3>Opis:</h3>
-          opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.
+          <div class="step-description">
+            {{step.description}}
+          </div>
         </div>
-        <button class="subscribe-button" mat-raised-button color="primary">
-          Subskrybuj <mat-icon>stars</mat-icon>
-        </button>
-      </div>
-      <div class="step-content">
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-header">
-        <div class="title">
-          <h4>
-            Poziom X
-          </h4>
-          <h5>
-            X zł / miesiąc
-          </h5>
+        <div *ngIf="visitorSubscription.step < step.price; else alreadySubscribed">
+          <button class="subscribe-button" mat-raised-button color="primary" (click)="setSubscription(step.price)">
+            Subskrybuj <mat-icon>stars</mat-icon>
+          </button>
         </div>
-        <div class="step-description">
-          <h3>Opis:</h3>
-          opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.
-        </div>
-        <button class="subscribe-button" mat-raised-button color="primary">
-          Subskrybuj <mat-icon>stars</mat-icon>
-        </button>
+        <ng-template #alreadySubscribed>
+          <button class="subscribe-button" mat-raised-button color="accent" (click)="setLowerSubscription(step.price)">
+            Anuluj subskrypcję <mat-icon>cancel</mat-icon>
+          </button>
+        </ng-template>
       </div>
-      <div class="step-content">
-
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-header">
-        <div class="title">
-          <h4>
-            Poziom X
-          </h4>
-          <h5>
-            X zł / miesiąc
-          </h5>
+      <div class="step-content" *ngIf="visitorSubscription.step >= step.price">
+        <div *ngIf="!!step.additions.videoId">
+          <youtube-player
+            [height] = "450"
+            [width] = "1010"
+            [videoId]="step.additions.videoId"
+            (ready)="savePlayer($event)"
+            (change)="onPlayerStateChange($event)"
+          ></youtube-player>
         </div>
-        <div class="step-description">
-          <h3>Opis:</h3>
-          opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.opis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopisopis opisopis.
+        <div *ngIf="!!step.additions.pictureUrl">
+         <a [href]="step.additions.pictureUrl" target="_blank">
+           <img [src]="step.additions.pictureUrl" [alt]="step.additions.pictureUrl">
+         </a>
         </div>
-        <button class="subscribe-button" mat-raised-button color="primary">
-          Subskrybuj <mat-icon>stars</mat-icon>
-        </button>
-      </div>
-      <div class="step-content">
-
+        <div *ngIf="!!step.additions.text">
+          {{step.additions.text}}
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #loadingDetails>
+  <mat-progress-spinner
+    color="accent"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>

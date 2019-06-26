@@ -6,26 +6,20 @@
   <div class="card-contents" >
 
     <div class="grey-out" [@fadeIn]="animationState"></div>
-    <div class="ref-button" [@fadeIn]="animationState">
+    <div class="ref-button" routerLink="/tworca/{{creator.uid}}" [@fadeIn]="animationState">
       <button mat-stroked-button>zobacz autora</button>
     </div>
     <div class="info-container" [@infoSlide]="animationState">
       <div class="info-header" >
-        <img src="../../../../assets/images/default-avatar.png"/>
-        <h3>nazwaAutora</h3>
+        <img [src]="creator.avatar"/>
+        <h3>{{creator.visibleName}}</h3>
       </div>
       <div class="info-description">
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+        {{creator.creatorFields.description}}
       </div>
       <div class="spacer" ></div>
       <div class="info-tags">
-        Tag1, tag2, tag3
+        {{creator.creatorFields.tags}}
       </div>
     </div>
   </div>

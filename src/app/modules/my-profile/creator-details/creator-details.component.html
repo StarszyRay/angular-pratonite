@@ -1,0 +1,56 @@
+<section *ngIf="creatorDetails != null; else loadingBlock">
+  <div *ngIf="creatorDetails.role == 'creator'; else supporterBlock">
+    <div class="title-container">
+      <mat-icon class="material-icons.md-36">person</mat-icon><h2>Tagi:</h2>
+    </div>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let tag of creatorDetails.creatorFields.tags">
+        <p matLine>{{ tag }}</p>
+        <button mat-icon-button (click)="removeTag(tag)">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+    <div class="row">
+      <mat-form-field  [floatLabel]="isFloatLabel">
+        <mat-label>Nowy tag</mat-label>
+        <input matInput name="newTag" [(ngModel)]="newTag">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTag()">Dodaj tag</button>
+    </div>
+    <div class="title-container">
+      <mat-icon class="material-icons.md-36">person</mat-icon><h2>szczegóły:</h2>
+    </div>
+    <div class="row">
+      <mat-form-field [floatLabel]="isFloatLabel">
+        <mat-label>Specjalizacja</mat-label>
+        <input matInput name="speciality" [(ngModel)]="creatorDetails.creatorFields.specialization">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field [floatLabel]="isFloatLabel">
+        <mat-label>Opis</mat-label>
+        <input matInput name="description" [(ngModel)]="creatorDetails.creatorFields.description">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <button mat-raised-button class="save-button" color="primary" (click)="saveCreatorDetails()">ZAPISZ</button>
+    </div>
+  </div>
+  <ng-template #supporterBlock>
+    <div class="supported-warn">
+      <h2>Nie jesteś jeszcze twórcą</h2>
+      <p>Dołącz do nas i zacznij zarabiać:</p>
+      <button mat-raised-button color="primary" (click)="becomeCreator()">Dołącz</button>
+    </div>
+  </ng-template>
+</section>
+
+<ng-template #loadingBlock>
+  <mat-progress-spinner
+    class="spinner"
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</ng-template>
+

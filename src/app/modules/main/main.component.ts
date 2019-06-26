@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {CarouselComponent} from 'angular-bootstrap-md';
+import {CreatorService} from '../../services/creator.service';
+import {IUser} from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-main',
@@ -18,16 +20,17 @@ import {CarouselComponent} from 'angular-bootstrap-md';
 })
 export class MainComponent implements OnInit {
   public currentIndex: number;
+  public recommendedCreators: IUser[];
   slides = [
-    {image: '../../../assets/slides-assets/img00.jpg', description: 'Image 00'},
-    {image: '../../../assets/slides-assets/img01.jpg', description: 'Image 01'},
-    {image: '../../../assets/slides-assets/img02.jpg', description: 'Image 02'},
-    {image: '../../../assets/slides-assets/img03.jpg', description: 'Image 03'},
-    {image: '../../../assets/slides-assets/img04.jpg', description: 'Image 04'},
+    {image: '../../../assets/slides-assets/img00.jpg', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'},
+    {image: '../../../assets/slides-assets/img01.jpg', description: 'Fusce mattis dolor ut elit ultrices'},
+    {image: '../../../assets/slides-assets/img02.jpg', description: 'et eleifend dolor placerat.'},
+    {image: '../../../assets/slides-assets/img03.jpg', description: 'Lorem ipsum dolor sit amet,'},
+    {image: '../../../assets/slides-assets/img04.jpg', description: 'consectetur adipiscing elit. Aenean'},
   ];
   @ViewChild('carousel') carousel: CarouselComponent;
 
-  constructor() {
+  constructor(private creatorService: CreatorService) {
     this.currentIndex = 0;
   }
 
@@ -37,6 +40,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.carousel.play();
+    this.creatorService.recommendedCreators()
+      .then( recommended =>  {
+        this.recommendedCreators = recommended;
+      });
   }
 
 }

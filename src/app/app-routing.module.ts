@@ -7,6 +7,7 @@ import {MyProfileComponent} from './modules/my-profile/my-profile.component';
 import {MyProfileDataComponent} from './modules/my-profile/data/data.component';
 import {MyProfileStepsComponent} from './modules/my-profile/steps/steps.component';
 import {CreatorComponent} from './modules/creator/creator.component';
+import {MyProfileCreatorDetailsComponent} from './modules/my-profile/creator-details/creator-details.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -14,9 +15,10 @@ const routes: Routes = [
   { path: 'moj_profil', component: MyProfileComponent, children: [
       { path: '', redirectTo: 'dane', pathMatch: 'full' },
       { path: 'dane', component: MyProfileDataComponent },
-      { path: 'steps', component: MyProfileStepsComponent }
+      { path: 'szczeble', component: MyProfileStepsComponent },
+      { path: 'czszegoly_tworcy', component: MyProfileCreatorDetailsComponent }
       ]},
-  { path: 'creator', component: CreatorComponent },
+  { path: 'tworca/:uid', component: CreatorComponent },
 ];
 
 @NgModule({

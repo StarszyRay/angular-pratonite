@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IUser} from '../../../interfaces/user';
+import {IUser} from '../../../interfaces/user.interface';
 import {ProfileService} from '../../../services/profile.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ZoomFadeAnimation} from '../../../animations/zoom-fade.animation';
@@ -29,10 +29,10 @@ export class MyProfileDataComponent implements OnInit {
   }
 
   saveProfile() {
-    console.log(this.profileDetails);
+    // console.log(this.profileDetails);
     this.profileService.tryUpdateProfile(this.profileDetails)
       .then(result => {
-        console.log(result);
+        // console.log(result);
         this.isUpdatedSuccessfully = true;
       }, err => {
         console.log(err);
@@ -46,7 +46,7 @@ export class MyProfileDataComponent implements OnInit {
       this.avatarForm.get('avatar').setValue(file);
       const formData = new FormData();
       formData.append('file', this.avatarForm.get('avatar').value);
-      console.log(formData);
+      // console.log(formData);
       this.fileService.uploadAvatar(formData)
         .then( response => {
           const jsonResponse = JSON.parse(JSON.stringify(response));

@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material';
+import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
@@ -12,6 +12,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { firebaseEnv } from '../environments/fbenvironment';
 import {ServicesModule} from './services/services.module';
 import {HttpClientModule} from '@angular/common/http';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 
 // components
 import { AppComponent } from './app.component';
@@ -22,11 +23,12 @@ import {MyProfileComponent} from './modules/my-profile/my-profile.component';
 import {SimpleHeaderComponent} from './modules/shared/simple-header/simple-header.component';
 import {SideMenuComponent} from './modules/my-profile/side-menu/side-menu.component';
 import {MyProfileDataComponent} from './modules/my-profile/data/data.component';
-import {MyProfileStepsComponent} from './modules/my-profile/steps/steps.component';
+import {MyProfileStepsComponent, YoutubeDialog} from './modules/my-profile/steps/steps.component';
 import { FooterComponent } from './modules/shared/footer/footer.component';
 import {CreatorComponent} from './modules/creator/creator.component';
 import {CreatorCardComponent} from './modules/main/creator-card/creator-card.component';
 import { TestsComponent } from './modules/tests/tests.component';
+import {MyProfileCreatorDetailsComponent} from './modules/my-profile/creator-details/creator-details.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { TestsComponent } from './modules/tests/tests.component';
     FooterComponent,
     CreatorComponent,
     CreatorCardComponent,
-    TestsComponent
+    TestsComponent,
+    YoutubeDialog,
+    MyProfileCreatorDetailsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseEnv.firebase),
@@ -58,10 +62,14 @@ import { TestsComponent } from './modules/tests/tests.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    ServicesModule
+    ServicesModule,
+    NgxYoutubePlayerModule.forRoot()
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    YoutubeDialog
+  ]
 })
 export class AppModule { }

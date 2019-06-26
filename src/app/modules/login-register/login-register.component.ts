@@ -33,7 +33,7 @@ export class LoginRegisterComponent implements OnInit {
       .then(result => {
         console.log(result);
         console.log(result.user.uid);
-        this.profileService.addNewProfile(result.uid, this.registerFormGroup.value);
+        this.profileService.addNewProfile(result.user.uid, this.registerFormGroup.value);
         this.router.navigate(['/moj_profil']);
       }, err => {
         console.log(err);
@@ -53,7 +53,7 @@ export class LoginRegisterComponent implements OnInit {
   tryGoogleLogin() {
     this.authService.doGoogleLogin()
       .then(result => {
-        console.log(result);
+        // console.log(result);
         if (result.additionalUserInfo.isNewUser) {
           this.profileService.addNewGoogleProfile(result.user);
         }

@@ -183,12 +183,11 @@ $slider-height: 500px;
   display: flex;
   justify-content: center;
   .creators-container-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+    width: 95%;
     ul {
       margin: 0;
       padding: 0;
+      width: available;
       list-style-type: none;
       display: flex;
       justify-content: flex-start;

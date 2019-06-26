@@ -1,5 +1,7 @@
+import {ICreator} from './creator.interface';
+
 export interface IUser {
-  readonly _id: string;
+  _id?: string;
   uid: string;
   email: string;
   name: string;
@@ -7,4 +9,5 @@ export interface IUser {
   avatar: string;
   visibleName: string;
   role: string;
+  creatorFields: ICreator;
 }

@@ -1,109 +1,90 @@
-<section class="forms-container" *ngIf="profileDetails != null; else elseBlock">
+<section class="forms-container" *ngIf="profileDetails != null; else loadingBlock">
   <div class="title-container">
     <mat-icon class="material-icons.md-36">person</mat-icon><h2>Twoje progi:</h2>
   </div>
-  <div class="steps-container">
-    <div class="step">
+  <div class="steps-container" *ngIf="creatorSteps; else loadingBlock">
+    <div class="step" *ngFor="let step of sortedSteps()">
       <div class="price">
-        <span class="price-number">x</span> zł / miesiąc
+        <span class="price-number">{{step.price}}</span> zł / miesiąc
       </div>
       <div class="info">
-        patroni: 0
+        patroni: {{step.patronsNum}}
       </div>
       <div class="description">
         <p>
-          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        </p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="price">
-        <span class="price-number">x</span> zł / miesiąc
-      </div>
-      <div class="info">
-        patroni: 0
-      </div>
-      <div class="description">
-        <p>
-          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        </p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="price">
-        <span class="price-number">x</span> zł / miesiąc
-      </div>
-      <div class="info">
-        patroni: 0
-      </div>
-      <div class="description">
-        <p>
-          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-        </p>
-      </div>
-    </div><div class="step">
-    <div class="price">
-      <span class="price-number">x</span> zł / miesiąc
-    </div>
-    <div class="info">
-      patroni: 0
-    </div>
-    <div class="description">
-      <p>
-        opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
-      </p>
-    </div>
-  </div>
-    <div class="step">
-      <div class="price">
-        <span class="price-number">x</span> zł / miesiąc
-      </div>
-      <div class="info">
-        patroni: 0
-      </div>
-      <div class="description">
-        <p>
-          opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis opis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opisopis opis
+          {{step.description}}
         </p>
       </div>
     </div>
   </div>
-  <form class="step-form">
+  <form class="step-form" *ngIf="isAddingStep">
     <mat-form-field hideRequiredMarker="always">
-      <input matInput type="number" placeholder="Kwota progu / miesiąc" required>
+      <input matInput type="number" placeholder="Kwota progu / miesiąc" name="price" [(ngModel)]="newStep.price" required>
       <span matSuffix>PLN</span>
     </mat-form-field>
     <mat-form-field hideRequiredMarker="always">
-      <textarea matInput rows="2" placeholder="Opis" required></textarea>
+      <textarea matInput rows="4" placeholder="Opis" name="description" [(ngModel)]="newStep.description" required></textarea>
     </mat-form-field>
-    <p class="attachment-title">Udostępnij wspierającym:</p>
+    <p class="attachment-title">Ukryta zawartość:</p>
     <div class="form-field">
       <div class="file-input">
+        <div class="miniature-container" *ngIf="newStep.additions.pictureUrl != ''">
+          <img class="picture-miniature" src="{{newStep.additions.pictureUrl}}" alt="{{newStep.additions.pictureUrl}}">
+          <button mat-icon-button aria-label="remove" color="warn" (click)="removeNewStepPicture()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
         <button mat-stroked-button color="accent" onclick="document.getElementById('fileToUpload').click()">
           plik
         </button>
-        <input id="fileToUpload" type="file" style="display:none;">
+        <input id="fileToUpload" type="file" style="display:none;" (change)="sendPicture($event)">
       </div>
       <div class="separator">
-        lub
+
       </div>
       <div class="youtube-link">
-          <mat-form-field>
-            <input matInput placeholder="Wideo YouTube">
-          </mat-form-field>
+        <div class="youtube-container" *ngIf="isVideoIdValid">
+          <youtube-player
+            [videoId]="newStep.additions.videoId"
+            (ready)="savePlayer($event)"
+            (change)="onPlayerStateChange($event)"
+          ></youtube-player>
+          <button mat-icon-button class="cancel-button" aria-label="remove" color="warn" (click)="removeNewStepVideo()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+        <div class="link-input">
+          <button mat-stroked-button color="accent" (click)="openYoutubeDialog()">
+            YouTube
+          </button>
+          <input id="youtubeLink" style="display:none;" name="youtube" [(ngModel)]="newStep.additions.videoId">
+        </div>
+
+      </div>
+    </div>
+    <div class="form-field">
+      <div class="patron-message">
+        <mat-form-field>
+          <textarea matInput rows="5" placeholder="Wiadomość dla patronów" name="message" [(ngModel)]="newStep.additions.text"></textarea>
+        </mat-form-field>
       </div>
     </div>
     <div class="form-button">
-      <button mat-stroked-button color="primary">Zapisz</button>
+      <button mat-stroked-button color="primary" (click)="addStep()">Zapisz</button>
     </div>
   </form>
   <div class="add-form-button">
-    <button mat-raised-button color="primary">
-        <mat-icon>add</mat-icon> Dodaj nowy próg
+    <button mat-raised-button color="primary" *ngIf="isAddingStep; else addingBlock" (click)="showAddStepForm()">
+      <mat-icon>cancel</mat-icon> Anuluj tworzenie progu
     </button>
+    <ng-template #addingBlock>
+      <button mat-raised-button color="primary" (click)="showAddStepForm()">
+        <mat-icon>add</mat-icon> Utwórz nowy próg
+      </button>
+    </ng-template>
   </div>
 </section>
-<ng-template #elseBlock>
+<ng-template #loadingBlock>
   <mat-progress-spinner
     color="accent"
     mode="indeterminate">
